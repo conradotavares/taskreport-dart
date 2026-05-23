@@ -31,4 +31,4 @@ dart run main.dart
 
 ## Links
 - Vídeo: (em breve)
-- Kanban: (adicione o link do seu Trello aqui)
+- Kanban: https://trello.com/invite/b/6a119004df4efb5dc0059266/ATTI16fe3f281c262191b74f36b5c367fa31618B73D4/mini-projeto
