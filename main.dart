@@ -41,6 +41,46 @@ class Tarefa extends ItemTrabalho {
   }
 }
 
+// CLASSE RELATÓRIO COM ENCAPSULAMENTO
+class RelatorioTarefas {
+  final List<Tarefa> _tarefas;
+
+  RelatorioTarefas(List<Tarefa> tarefas) : _tarefas = tarefas;
+
+  int get quantidadeTotal => _tarefas.length;
+
+  void gerarRelatorio() {
+    int concluidas = _tarefas.where((t) => t.status == 'concluida').length;
+    int pendentes = _tarefas.where((t) => t.status == 'pendente').length;
+    int emAndamento = _tarefas.where((t) => t.status == 'em andamento').length;
+    int canceladas = _tarefas.where((t) => t.status == 'cancelada').length;
+
+    double totalConcluidas = 0.0;
+    for (Tarefa t in _tarefas.where((t) => t.status == 'concluida').toList()) {
+      totalConcluidas += t.valor;
+    }
+
+    int horasConcluidas = 0;
+    for (Tarefa t in _tarefas.where((t) => t.status == 'concluida').toList()) {
+      horasConcluidas += t.horas;
+    }
+
+    print('=============================');
+    print('  RELATÓRIO FINAL DE TAREFAS');
+    print('=============================');
+    print(' ');
+    print('Total de tarefas analisadas: $quantidadeTotal');
+    print('Tarefas concluídas: $concluidas');
+    print('Tarefas pendentes: $pendentes');
+    print('Tarefas em andamento: $emAndamento');
+    print('Tarefas canceladas: $canceladas');
+    print(' ');
+    print('Valor total das concluídas: R\$ $totalConcluidas');
+    print('Total de horas concluídas: $horasConcluidas');
+    print(' ');
+  }
+}
+
 // BASE DE DADOS SIMULADA
 final List<Map<String, dynamic>> dadosTarefas = [
   {
@@ -258,4 +298,8 @@ void main() {
     print(status);
   }
   print(' ');
+
+  // RELATÓRIO FINAL
+  RelatorioTarefas relatorio = RelatorioTarefas(tarefas);
+  relatorio.gerarRelatorio();
 }
