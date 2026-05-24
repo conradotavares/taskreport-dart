@@ -15,10 +15,18 @@ Praticar os principais conceitos do Módulo 01:
 - estruturas de decisão e repetição
 - funções e arrow functions
 - Lists, Maps e Sets
-- métodos de coleção
+- métodos de coleção (where, map, every)
 - classes, objetos, atributos e métodos
 - construtores, encapsulamento, herança e polimorfismo com @override
 - GitHub, GitFlow e Kanban
+
+## Estrutura do projeto
+
+taskreport-dart/
+├── main.dart
+├── README.md
+└── planejamento/
+└── tarefas-kanban.md
 
 ## Como executar
 
@@ -27,7 +35,10 @@ dart run main.dart
 ```
 
 ## Tecnologias
-- Dart puro
+- Dart SDK 3.11.5
+
+## Autor
+Conrado Tavares
 
 ## Links
 - Vídeo: (em breve)
