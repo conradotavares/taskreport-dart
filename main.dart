@@ -152,4 +152,110 @@ void main() {
   for (var tarefa in tarefas) {
     tarefa.exibirResumo();
   }
+  // FILTRAR POR STATUS
+  print('=== TAREFAS CONCLUÍDAS ===');
+  print(' ');
+  List<Tarefa> concluidas = tarefas
+      .where((t) => t.status == 'concluida')
+      .toList();
+  for (var tarefa in concluidas) {
+    print('- ${tarefa.titulo}');
+  }
+  print(' ');
+
+  print('=== TAREFAS PENDENTES ===');
+  print(' ');
+  List<Tarefa> pendentes = tarefas
+      .where((t) => t.status == 'pendente')
+      .toList();
+  for (var tarefa in pendentes) {
+    print('- ${tarefa.titulo}');
+  }
+  print(' ');
+
+  print('=== TAREFAS EM ANDAMENTO ===');
+  print(' ');
+  List<Tarefa> emAndamento = tarefas
+      .where((t) => t.status == 'em andamento')
+      .toList();
+  for (var tarefa in emAndamento) {
+    print('- ${tarefa.titulo}');
+  }
+  print(' ');
+
+  print('=== TAREFAS CANCELADAS ===');
+  print(' ');
+  List<Tarefa> canceladas = tarefas
+      .where((t) => t.status == 'cancelada')
+      .toList();
+  for (var tarefa in canceladas) {
+    print('- ${tarefa.titulo}');
+  }
+  print(' ');
+
+  // SOMAR VALORES DAS CONCLUÍDAS
+  double totalConcluidas = 0.0;
+  for (var tarefa in concluidas) {
+    totalConcluidas = totalConcluidas + tarefa.valor;
+  }
+  print('=== VALOR TOTAL DAS CONCLUÍDAS ===');
+  print('R\$ $totalConcluidas');
+  print(' ');
+
+  // MÉDIA DE VALOR DAS PENDENTES
+  print('=== MÉDIA DE VALOR DAS PENDENTES ===');
+  if (pendentes.isEmpty) {
+    print('Não existem tarefas pendentes para calcular média.');
+  } else {
+    double somaPendentes = 0.0;
+    for (var tarefa in pendentes) {
+      somaPendentes = somaPendentes + tarefa.valor;
+    }
+    double mediaPendentes = somaPendentes / pendentes.length;
+    print('R\$ $mediaPendentes');
+  }
+  print(' ');
+
+  // TOTAL DE HORAS POR STATUS
+  Map<String, int> horasPorStatus = {};
+  for (Tarefa tarefa in tarefas) {
+    if (horasPorStatus.containsKey(tarefa.status)) {
+      horasPorStatus[tarefa.status] =
+          horasPorStatus[tarefa.status]! + tarefa.horas;
+    } else {
+      horasPorStatus[tarefa.status] = tarefa.horas;
+    }
+  }
+  print('=== TOTAL DE HORAS POR STATUS ===');
+  print(' ');
+  for (String status in horasPorStatus.keys) {
+    print('$status: ${horasPorStatus[status]} horas');
+  }
+  print(' ');
+
+  // TAREFAS COM DADOS INCOMPLETOS
+  print('=== TAREFAS COM DADOS INCOMPLETOS ===');
+  print(' ');
+  for (Map<String, dynamic> item in dadosTarefas) {
+    List<String> problemas = [];
+    if (item['titulo'] == null) problemas.add('título ausente');
+    if (item['responsavel'] == null) problemas.add('responsável ausente');
+    if (item['horas'] == null) problemas.add('horas ausentes');
+    if (problemas.isNotEmpty) {
+      print('- ID ${item['id']}: ${problemas.join(', ')}');
+    }
+  }
+  print(' ');
+
+  // STATUS ÚNICOS COM SET
+  Set<String> statusUnicos = {};
+  for (Tarefa tarefa in tarefas) {
+    statusUnicos.add(tarefa.status);
+  }
+  print('=== STATUS ENCONTRADOS ===');
+  print(' ');
+  for (String status in statusUnicos) {
+    print(status);
+  }
+  print(' ');
 }
