@@ -41,5 +41,5 @@ dart run main.dart
 Conrado Tavares
 
 ## Links
-- Vídeo: (em breve)
+- Vídeo: (https://youtu.be/uI_PPkqFX98)
 - Kanban: https://trello.com/invite/b/6a119004df4efb5dc0059266/ATTI16fe3f281c262191b74f36b5c367fa31618B73D4/mini-projeto
